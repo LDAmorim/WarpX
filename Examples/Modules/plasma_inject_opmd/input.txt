@@ -1,0 +1,17 @@
+max_step = 2
+amr.max_level = 0
+warpx.verbose = 1
+warpx.cfl = 0.9
+amr.n_cell = 32 32 32
+amr.max_grid_size = 32
+amr.blocking_factor = 8
+geometry.coord_sys = 0
+geometry.is_periodic = 0 0 0
+geometry.prob_lo = -3.e-5 -3.e-5  2.5000e-3
+geometry.prob_hi =  3.e-5  3.e-5  2.5001e-3
+algo.maxwell_fdtd_solver = Yee
+particles.nspecies = 1
+particles.species_names = beam
+beam.injection_style = external_file
+beam.physical_q_tot=-1.e-9
+beam.injection_file = electrons.h5
