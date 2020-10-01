@@ -38,6 +38,11 @@ int main(int argc, char* argv[])
     {
         WarpX warpx;
 
+        if (warpx.Verbose()) {
+            Print() << "WarpX Version: " << WarpX::Version() << '\n';
+            Print() << "PICSAR Version: " << WarpX::PicsarVersion() << '\n';
+        }
+
         warpx.InitData();
 
         warpx.Evolve();
@@ -47,8 +52,6 @@ int main(int argc, char* argv[])
         ParallelDescriptor::ReduceRealMax(end_total, ParallelDescriptor::IOProcessorNumber());
         if (warpx.Verbose()) {
             Print() << "Total Time                     : " << end_total << '\n';
-            Print() << "WarpX Version: " << WarpX::Version() << '\n';
-            Print() << "PICSAR Version: " << WarpX::PicsarVersion() << '\n';
         }
     }
 
