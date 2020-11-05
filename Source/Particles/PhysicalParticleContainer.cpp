@@ -399,7 +399,7 @@ PhysicalParticleContainer::AddPlasmaFromFile(ParticleReal q_tot,
 
         ParticleReal weight = 1.0_prt;  // base standard: no info means "real" particles
         if (q_tot != 0.0) {
-            weight = std::abs(q_tot) / ( std::abs(charge) * ParticleReal(npart) );
+            weight = std::abs(q_tot) / ( std::abs(charge) * ParticleReal(npart) ) / double( mpart );
             if (ps.contains("weighting")) {
                 Print() << "WARNING: Both '" << ps_name << ".q_tot' and '"
                         << ps_name << ".injection_file' specify a total charge.\n'"
