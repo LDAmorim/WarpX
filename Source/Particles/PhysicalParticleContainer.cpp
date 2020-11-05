@@ -351,7 +351,8 @@ PhysicalParticleContainer::AddGaussianBeam (
 
 void
 PhysicalParticleContainer::AddPlasmaFromFile(ParticleReal q_tot,
-                                             ParticleReal z_shift)
+                                             ParticleReal z_shift,
+                                             int mpart)
 {
     // Declare temporary vectors on the CPU
     Gpu::HostVector<ParticleReal> particle_x;
@@ -429,10 +430,12 @@ PhysicalParticleContainer::AddPlasmaFromFile(ParticleReal q_tot,
                 if (ps["momentum"].contains("y")) {
                     uy = ptr_uy.get()[i]*momentum_unit_y/PhysConst::m_e;
                 }
-                CheckAndAddParticle(x, y, z, { ux, uy, uz}, weight,
-                                    particle_x,  particle_y,  particle_z,
-                                    particle_ux, particle_uy, particle_uz,
-                                    particle_w);
+                for (int mp = 0; mp <mpart; ++mp){
+                    CheckAndAddParticle(x, y, z, { ux, uy, uz}, weight,
+                                        particle_x,  particle_y,  particle_z,
+                                        particle_ux, particle_uy, particle_uz,
+                                        particle_w);
+                }
             }
         }
         auto const np = particle_z.size();
@@ -514,7 +517,8 @@ PhysicalParticleContainer::AddParticles (int lev)
 
     if (plasma_injector->external_file) {
         AddPlasmaFromFile(plasma_injector->q_tot,
-                          plasma_injector->z_shift);
+                          plasma_injector->z_shift,
+                          plasma_injector->mpart);
         return;
     }
 

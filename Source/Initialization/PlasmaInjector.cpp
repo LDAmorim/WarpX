@@ -274,6 +274,7 @@ PlasmaInjector::PlasmaInjector (int ispecies, const std::string& name)
         // optional parameters
         pp.query("q_tot", q_tot);
         pp.query("z_shift",z_shift);
+        pp.query("mpart", mpart);
 
 #ifdef WARPX_USE_OPENPMD
         if (ParallelDescriptor::IOProcessor()) {

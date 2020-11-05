@@ -203,9 +203,11 @@ public:
     /** Load a particle beam from an external file
      * @param[in] q_tot total charge of the particle species to be initialized
      * @param[in] z_shift optional shift to the z position of particles (useful for boosted frame runs)
+     * @param[in] mpart integer macro-particle number multiplying factor
      */
     void AddPlasmaFromFile (amrex::ParticleReal q_tot,
-                            amrex::ParticleReal z_shift);
+                            amrex::ParticleReal z_shift,
+                            int mpart);
 
     void CheckAndAddParticle (
         amrex::Real x, amrex::Real y, amrex::Real z,
